@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nav was here</title>
+  <style>
+    /* Reset some default styles */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Dark background for the page */
+    body {
+      background-color: #1e1e1e;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    /* Heading style */
+    h1 {
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 50px;
+    }
+
+    /* Style for the launch button */
+    .launch-button {
+      background-color: #333;
+      border: 2px solid #00b0ff;
+      color: white;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-radius: 10px;
+      cursor: pointer;
+      outline: none;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    /* Button hover and focus effects */
+    .launch-button:hover {
+      background-color: #00b0ff;
+      color: black;
+    }
+
+    .launch-button:before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(0, 176, 255, 0.6), rgba(0, 176, 255, 0));
+      border-radius: 10px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      transform: translate(-50%, -50%);
+    }
+
+    .launch-button:hover:before {
+      opacity: 1;
+    }
+
+    /* Button focus effect */
+    .launch-button:focus {
+      outline: none;
+      border-color: #00b0ff;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Nav's website loader 2.0</h1>
+  <button class="launch-button" onclick="launchEaglercraft()">Launch Eaglercraft</button>
+
+  <script>
+    function launchEaglercraft() {
+      // Create a new blank tab
+      let newWindow = window.open('about:blank', '_blank');
+
+      // Fetch the HTML content from the URL
+      fetch('https://raw.githubusercontent.com/hellomynameisgithubuser/HTMLrepo/refs/heads/main/EaglercraftX_1.8_u50_Offline_Signed.html')
+        .then(response => response.text())
+        .then(html => {
+          // Check if HTML is received
+          if (html) {
+            newWindow.document.open();
+            newWindow.document.write(html);  // Write the raw HTML to the new tab
+            newWindow.document.close();
+          } else {
+            throw new Error("Failed to load HTML content");
+          }
+        })
+        .catch(error => {
+          console.error('Error loading the HTML:', error);
+          newWindow.document.write(`<p>Error: ${error.message}</p>`);
+          newWindow.document.close();
+        });
+    }
+  </script>
+
+</body>
+</html>
