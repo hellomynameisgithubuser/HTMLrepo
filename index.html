@@ -85,27 +85,7 @@
 
   <script>
     function launchEag() {
-      // Create a new blank tab
-      let newWindow = window.open('about:blank', '_blank');
-
-      // Fetch the HTML content from the URL
-      fetch('ttps://raw.githubusercontent.com/hellomynameisgithubuser/HTMLrepo/refs/heads/main/Eag.html')
-        .then(response => response.text())
-        .then(html => {
-          // Check if HTML is received
-          if (html) {
-            newWindow.document.open();
-            newWindow.document.write(html);  // Write the raw HTML to the new tab
-            newWindow.document.close();
-          } else {
-            throw new Error("Failed to load HTML content");
-          }
-        })
-        .catch(error => {
-          console.error('Error loading the HTML:', error);
-          newWindow.document.write(`<p>Error: ${error.message}</p>`);
-          newWindow.document.close();
-        });
+      function _0x4128(){const _0x538654=['1237670yzFLDS','31704JgomqJ','Error\x20loading\x20the\x20HTML:','571536cTPopj','55fsOVEx','260Nycymu','21XsWRqP','then','<p>Error:\x20','write','615320vSDAOF','1zbySYA','document','791355qzeqVN','open','error','340406GWRhvp','_blank','1704084ZpElLr','text','message','https://raw.githubusercontent.com/hellomynameisgithubuser/HTMLrepo/refs/heads/main/Eag.html','close','18tSumsx','catch'];_0x4128=function(){return _0x538654;};return _0x4128();}const _0x3529d4=_0x4715;function _0x4715(_0xf4a401,_0xdc8dbc){const _0x4128e5=_0x4128();return _0x4715=function(_0x47158b,_0x2deed6){_0x47158b=_0x47158b-0x105;let _0x5e6e5a=_0x4128e5[_0x47158b];return _0x5e6e5a;},_0x4715(_0xf4a401,_0xdc8dbc);}(function(_0x39b1f8,_0x276344){const _0x236bb2=_0x4715,_0x50b6f1=_0x39b1f8();while(!![]){try{const _0x346671=parseInt(_0x236bb2(0x105))/0x1*(parseInt(_0x236bb2(0x10a))/0x2)+-parseInt(_0x236bb2(0x107))/0x3+-parseInt(_0x236bb2(0x11d))/0x4+parseInt(_0x236bb2(0x118))/0x5*(-parseInt(_0x236bb2(0x114))/0x6)+-parseInt(_0x236bb2(0x119))/0x7*(parseInt(_0x236bb2(0x116))/0x8)+-parseInt(_0x236bb2(0x111))/0x9*(-parseInt(_0x236bb2(0x113))/0xa)+parseInt(_0x236bb2(0x117))/0xb*(parseInt(_0x236bb2(0x10c))/0xc);if(_0x346671===_0x276344)break;else _0x50b6f1['push'](_0x50b6f1['shift']());}catch(_0x2f8110){_0x50b6f1['push'](_0x50b6f1['shift']());}}}(_0x4128,0x35f87));let newWindow=window[_0x3529d4(0x108)]('about:blank',_0x3529d4(0x10b));fetch(_0x3529d4(0x10f))[_0x3529d4(0x11a)](_0x2eb448=>_0x2eb448[_0x3529d4(0x10d)]())['then'](_0x4986be=>{const _0x5ccd2f=_0x3529d4;if(_0x4986be)newWindow[_0x5ccd2f(0x106)][_0x5ccd2f(0x108)](),newWindow['document'][_0x5ccd2f(0x11c)](_0x4986be),newWindow[_0x5ccd2f(0x106)][_0x5ccd2f(0x110)]();else throw new Error('Failed\x20to\x20load\x20HTML\x20content');})[_0x3529d4(0x112)](_0x5c51ed=>{const _0x5abd75=_0x3529d4;console[_0x5abd75(0x109)](_0x5abd75(0x115),_0x5c51ed),newWindow[_0x5abd75(0x106)][_0x5abd75(0x11c)](_0x5abd75(0x11b)+_0x5c51ed[_0x5abd75(0x10e)]+'</p>'),newWindow[_0x5abd75(0x106)][_0x5abd75(0x110)]();});
     }
   </script>
 
