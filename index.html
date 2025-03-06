@@ -69,25 +69,19 @@
         const reader = new FileReader();
         reader.onload = function (e) {
           const htmlContent = e.target.result;
-          const iframe = document.createElement('iframe');
-          
-          // Use srcdoc only if loading HTML content from a URL
-          const blob = new Blob([htmlContent], { type: 'text/html' });
-          const url = URL.createObjectURL(blob);
 
-          iframe.src = url; // Use src instead of srcdoc
-          iframe.style.position = 'absolute';
-          iframe.style.top = '0';
-          iframe.style.left = '0';
-          iframe.style.width = '100%';
-          iframe.style.height = '100%';
-          iframe.style.border = 'none';
+          // Insert the loaded HTML content into the body
+          document.body.innerHTML = htmlContent;
 
-          // Allow pointer lock
-          iframe.allow = 'fullscreen; gamepad; pointer-lock';
+          // After the HTML is loaded, request pointer lock
+          const bodyElement = document.body;
 
-          document.body.innerHTML = '';
-          document.body.appendChild(iframe);
+          bodyElement.addEventListener('click', () => {
+            // Request pointer lock on the body
+            if (bodyElement.requestPointerLock) {
+              bodyElement.requestPointerLock();
+            }
+          });
         };
         reader.readAsText(file);
       }
