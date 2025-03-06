@@ -71,13 +71,20 @@
           const htmlContent = e.target.result;
           const iframe = document.createElement('iframe');
           
-          iframe.srcdoc = htmlContent;
+          // Use srcdoc only if loading HTML content from a URL
+          const blob = new Blob([htmlContent], { type: 'text/html' });
+          const url = URL.createObjectURL(blob);
+
+          iframe.src = url; // Use src instead of srcdoc
           iframe.style.position = 'absolute';
           iframe.style.top = '0';
           iframe.style.left = '0';
           iframe.style.width = '100%';
           iframe.style.height = '100%';
           iframe.style.border = 'none';
+
+          // Allow pointer lock
+          iframe.allow = 'fullscreen; gamepad; pointer-lock';
 
           document.body.innerHTML = '';
           document.body.appendChild(iframe);
