@@ -1,89 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nav was here</title>
-  <style>
-    /* Reset some default styles */
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: Arial, sans-serif;
+// Create a new blank tab
+let newWindow = window.open('about:blank', '_blank');
+
+// Fetch the HTML content from the URL
+fetch('https://raw.githubusercontent.com/hellomynameisgithubuser/HTMLrepo/refs/heads/main/index.html')
+  .then(response => response.text())
+  .then(html => {
+    // Check if HTML is received
+    if (html) {
+      newWindow.document.open();
+      newWindow.document.write(html);  // Write the raw HTML to the new tab
+      newWindow.document.close();
+    } else {
+      throw new Error("Failed to load HTML content");
     }
-
-    /* Dark background for the page */
-    body {
-      background-color: #1e1e1e;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      height: 100%;
-    }
-
-    /* Heading style */
-    h1 {
-      text-align: center;
-      font-size: 2em;
-      margin-bottom: 50px;
-    }
-
-    /* Style for the file input */
-    .file-input {
-      background-color: #333;
-      border: 2px solid #00b0ff;
-      color: white;
-      padding: 15px 30px;
-      font-size: 1.2em;
-      font-weight: bold;
-      text-transform: uppercase;
-      border-radius: 10px;
-      cursor: pointer;
-      outline: none;
-      position: relative;
-      transition: all 0.3s ease;
-    }
-
-    /* Button hover and focus effects */
-    .file-input:hover {
-      background-color: #00b0ff;
-      color: black;
-    }
-  </style>
-</head>
-<body>
-
-  <h1>Nav's website loader 2.0</h1>
-  <input type="file" id="fileInput" class="file-input" accept=".html" value="Load Html File">
-
-  <script>
-    const fileInput = document.getElementById('fileInput');
-
-    fileInput.addEventListener('change', (event) => {
-      const file = event.target.files[0];
-
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          const htmlContent = e.target.result;
-
-          // Open a new tab
-          let newWindow = window.open('about:blank', '_blank');
-
-          // Write the fetched HTML content to the new tab
-          newWindow.document.open();
-          newWindow.document.write(htmlContent);
-          newWindow.document.close();
-
-          // Optionally, you can also request pointer lock, or handle other permissions here.
-        };
-        reader.readAsText(file);
-      }
-    });
-  </script>
-
-</body>
-</html>
+  })
+  .catch(error => {
+    console.error('Error loading the HTML:', error);
+    newWindow.document.write(`<p>Error: ${error.message}</p>`);
+    newWindow.document.close();
+  });
