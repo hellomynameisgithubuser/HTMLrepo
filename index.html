@@ -31,8 +31,8 @@
       margin-bottom: 50px;
     }
 
-    /* Style for the launch button */
-    .launch-button {
+    /* Style for the file input */
+    .file-input {
       background-color: #333;
       border: 2px solid #00b0ff;
       color: white;
@@ -48,71 +48,44 @@
     }
 
     /* Button hover and focus effects */
-    .launch-button:hover {
+    .file-input:hover {
       background-color: #00b0ff;
       color: black;
-    }
-
-    .launch-button:before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, rgba(0, 176, 255, 0.6), rgba(0, 176, 255, 0));
-      border-radius: 10px;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      transform: translate(-50%, -50%);
-    }
-
-    .launch-button:hover:before {
-      opacity: 1;
-    }
-
-    /* Button focus effect */
-    .launch-button:focus {
-      outline: none;
-      border-color: #00b0ff;
     }
   </style>
 </head>
 <body>
 
   <h1>Nav's website loader 2.0</h1>
-  <button class="launch-button" onclick="launchLoader()">Html Loader</button>
+  <input type="file" id="fileInput" class="file-input" accept=".html" value="Load Html File">
 
-<script>
-function launchLoader() {
-  // Create a new blank tab
-  let newWindow = window.open('', '_blank');
+  <script>
+    const fileInput = document.getElementById('fileInput');
 
-  // Check if the window was successfully opened
-  if (newWindow) {
-    // Fetch the HTML content from the URL
-    fetch('https://raw.githubusercontent.com/hellomynameisgithubuser/HTMLrepo/refs/heads/main/htmlLoader.html')
-      .then(response => response.text())
-      .then(html => {
-        // Check if HTML is received
-        if (html) {
-          newWindow.document.open();
-          newWindow.document.write(html);  // Write the raw HTML to the new tab
-          newWindow.document.close();
-        } else {
-          throw new Error("Failed to load HTML content");
-        }
-      })
-      .catch(error => {
-        console.error('Error loading the HTML:', error);
-        newWindow.document.write(`<p>Error: ${error.message}</p>`);
-        newWindow.document.close();
-      });
-  } else {
-    alert('Popup blocked! Please allow popups for this page.');
-  }
-}
-</script>
+    fileInput.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const htmlContent = e.target.result;
+          const iframe = document.createElement('iframe');
+          
+          iframe.srcdoc = htmlContent;
+          iframe.style.position = 'absolute';
+          iframe.style.top = '0';
+          iframe.style.left = '0';
+          iframe.style.width = '100%';
+          iframe.style.height = '100%';
+          iframe.style.border = 'none';
+
+          document.body.innerHTML = '';
+          document.body.appendChild(iframe);
+        };
+        reader.readAsText(file);
+      }
+    });
+  </script>
 
 </body>
 </html>
