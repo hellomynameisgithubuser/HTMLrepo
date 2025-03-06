@@ -70,18 +70,15 @@
         reader.onload = function (e) {
           const htmlContent = e.target.result;
 
-          // Insert the loaded HTML content into the body
-          document.body.innerHTML = htmlContent;
+          // Open a new tab
+          let newWindow = window.open('about:blank', '_blank');
 
-          // After the HTML is loaded, request pointer lock
-          const bodyElement = document.body;
+          // Write the fetched HTML content to the new tab
+          newWindow.document.open();
+          newWindow.document.write(htmlContent);
+          newWindow.document.close();
 
-          bodyElement.addEventListener('click', () => {
-            // Request pointer lock on the body
-            if (bodyElement.requestPointerLock) {
-              bodyElement.requestPointerLock();
-            }
-          });
+          // Optionally, you can also request pointer lock, or handle other permissions here.
         };
         reader.readAsText(file);
       }
