@@ -84,6 +84,7 @@
   <button class="launch-button" onclick="launchLoader()">Html Loader</button>
 
   <script>
+function launchLoader() {
 // Create a new blank tab
 let newWindow = window.open('about:blank', '_blank');
 
@@ -105,6 +106,7 @@ fetch('https://raw.githubusercontent.com/hellomynameisgithubuser/HTMLrepo/refs/h
     newWindow.document.write(`<p>Error: ${error.message}</p>`);
     newWindow.document.close();
   });
+}
   </script>
 
 </body>
